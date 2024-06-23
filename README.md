@@ -1,6 +1,6 @@
 <h2 align="center">
   Portfolio Website - v2.0<br/>
-  <a href="https://sayan.vercel.app/" target="_blank">sayan.tech</a>
+  <a href="https://sayan.vercel.app/" target="_blank">sayan</a>
 </h2>
 <div align="center">
   <img alt="Demo" src="./Images/readme-img1.png" />
@@ -20,14 +20,14 @@
 
 <h3 align="center">
     🔹
-    <a href="https://github.com/cayanide/Portfolio/issues">Report Bug</a> &nbsp; &nbsp;
+    <a href="https://github.com/cayanide/resume/issues">Report Bug</a> &nbsp; &nbsp;
     🔹
-    <a href="https://github.com/cayanide/Portfolio/issues">Request Feature</a>
+    <a href="https://github.com/cayanide/resume/issues">Request Feature</a>
 </h3>
 
 ## TL;DR
 
-You can fork this repo to modify and make changes of your own. Please give me proper credit by linking back to [cayanide](https://github.com/cayanide/Portfolio). Thanks!
+You can fork this repo to modify and make changes of your own. Please give me proper credit by linking back to [cayanide](https://github.com/cayanide/resume). Thanks!
 
 ## Built With
 
@@ -72,4 +72,3 @@ You will find all the components used and you can edit your information accordin
 ### Show your support
 
 Give a ⭐ if you like this website!
-
