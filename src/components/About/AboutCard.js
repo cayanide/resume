@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { ImPointRight } from "react-icons/im";
+import CodingStats from "./CodingStats"; // Import the new component
 
 function AboutCard() {
   return (
@@ -8,13 +9,13 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Sayan Chatterjee </span>
-            from <span className="purple"> Uttrakhand, India.</span>
+            Hi Everyone, I am <span className="purple">Sayan Chatterjee</span>
+            from <span className="purple">Uttrakhand, India.</span>
             <br />
-            I am currently a Fresher and expected to Graduated At 2025
+            I am currently a Fresher and expected to Graduate in 2025.
             <br />
-            I have completed Diploma and Pursuing Higher education Btech From
-            Lovely Proffesional University.
+            I have completed a Diploma and am pursuing higher education BTech
+            from Lovely Professional University.
             <br />
             <br />
             Apart from coding, some other activities that I love to do!
@@ -30,12 +31,12 @@ function AboutCard() {
               <ImPointRight /> Travelling
             </li>
           </ul>
-
           <p style={{ color: "rgb(155 126 172)" }}>
             "Strive to build things that make a difference!"{" "}
           </p>
           <footer className="blockquote-footer">Sayan</footer>
         </blockquote>
+        <CodingStats /> {/* Add the new component here */}
       </Card.Body>
     </Card>
   );
