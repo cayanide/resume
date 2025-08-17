@@ -124,9 +124,7 @@ export default function Resume() {
           whileInView="visible"
           viewport={{ once: true }}
           className="mt-6 text-center text-slate-400 text-sm"
-        >
-          Ensure the file exists at public/SayanChatterjee.pdf (case-sensitive).
-        </motion.div>
+        ></motion.div>
       </div>
     </div>
   );
