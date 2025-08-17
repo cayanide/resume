@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useRef } from "react";
 import {
   SiPython,
@@ -109,18 +110,21 @@ export default function Home() {
               </div>
 
               <div className="mt-7 flex gap-4 justify-center md:justify-start">
-                <a
-                  href="/projects"
+                {" "}
+                <Link
+                  to="/projects"
                   className="btn btn-primary hover:shadow-[0_0_18px_#3b82f6]"
                 >
-                  🚀 View My Work
-                </a>
-                <a
-                  href="/resume"
+                  {" "}
+                  🚀 View My Work{" "}
+                </Link>{" "}
+                <Link
+                  to="/resume"
                   className="btn btn-secondary hover:shadow-[0_0_18px_#22c55e]"
                 >
-                  📄 View Resume
-                </a>
+                  {" "}
+                  📄 View Resume{" "}
+                </Link>{" "}
               </div>
             </motion.div>
 
