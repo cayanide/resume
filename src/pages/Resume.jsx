@@ -7,7 +7,8 @@ import {
 import { motion } from "framer-motion";
 
 export default function Resume() {
-  const pdfPath = "/SayanChatterjee.pdf";
+  // Use a base-aware path so it works in dev ("/") and on GitHub Pages ("/resume/")
+  const pdfPath = import.meta.env.BASE_URL + "SayanChatterjee.pdf";
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 24 },
@@ -72,7 +73,7 @@ export default function Resume() {
           </button>
         </motion.div>
 
-        {/* Viewer container with frosty card */}
+        {/* Viewer */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -80,22 +81,18 @@ export default function Resume() {
           viewport={{ once: true }}
           className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg overflow-hidden"
         >
-          {/* Responsive ratio wrapper: taller on desktop, comfortable on mobile */}
-          <div className="w-full">
-            {/* Primary: iframe preview */}
-            <iframe
-              src={pdfPath}
-              title="Resume"
-              className="w-full h-[70vh] md:h-[80vh] bg-slate-950"
-            />
-          </div>
+          <iframe
+            src={pdfPath}
+            title="Resume"
+            className="w-full h-[70vh] md:h-[80vh] bg-slate-950"
+          />
 
-          {/* Fallback helper for browsers/dev-server blocking PDF in iframe */}
+          {/* Fallback/helper */}
           <div className="p-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-slate-300">
               <FaFilePdf className="text-red-400" />
               <span className="text-sm">
-                If the PDF doesn’t load, use the actions to open or download.
+                If the PDF doesn’t load here, use Open or Download above.
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -120,14 +117,16 @@ export default function Resume() {
           </div>
         </motion.div>
 
-        {/* Tips / Notes */}
+        {/* Tip */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           className="mt-6 text-center text-slate-400 text-sm"
-        ></motion.div>
+        >
+          Ensure the file exists at public/SayanChatterjee.pdf (case-sensitive).
+        </motion.div>
       </div>
     </div>
   );

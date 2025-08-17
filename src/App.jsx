@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
@@ -136,6 +136,7 @@ export default function App() {
             <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/certifications" element={<Certifications />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </main>
 
