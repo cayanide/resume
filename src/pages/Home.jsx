@@ -9,6 +9,8 @@ import {
   SiSpringboot,
   SiDocker,
   SiKubernetes,
+  SiDjango,
+  SiReact,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { AiOutlineCloud } from "react-icons/ai";
@@ -198,11 +200,16 @@ export default function Home() {
               items: [
                 { icon: <SiFlask />, name: "Flask" },
                 { icon: <SiFastapi />, name: "FastAPI" },
+                { icon: <SiDjango />, name: "Django" },
               ],
             },
             {
               title: "Java Frameworks",
-              items: [{ icon: <SiSpringboot />, name: "Spring Boot" }],
+              items: [
+                { icon: <SiSpringboot />, name: "Spring Boot" },
+                { icon: <SiReact />, name: "React" },
+                { icon: <SiReact />, name: "React Native" },
+              ],
             },
             {
               title: "Cloud & DevOps",
@@ -211,6 +218,8 @@ export default function Home() {
                 { icon: <SiKubernetes />, name: "Kubernetes" },
                 { icon: <AiOutlineCloud />, name: "AWS" },
                 { icon: <AiOutlineCloud />, name: "Azure" },
+                { icon: <AiOutlineCloud />, name: "Google Cloud" },
+                { icon: <AiOutlineCloud />, name: "GitLab" },
               ],
             },
           ].map((group, idx) => (
