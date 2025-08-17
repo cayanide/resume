@@ -1,0 +1,95 @@
+/* === Tailwind v4 import === */
+@import "tailwindcss";
+
+/* 🌌 Global body */
+body {
+    @apply bg-gray-950 text-gray-100 min-h-screen antialiased;
+    font-family: "Inter", sans-serif;
+    line-height: 1.6;
+}
+
+/* 📦 Container for consistent width */
+.container {
+    @apply max-w-6xl mx-auto px-6 py-10;
+}
+
+/* 🎨 Headings */
+h1 {
+    @apply text-5xl font-extrabold mb-6;
+}
+h2 {
+    @apply text-3xl font-bold mb-4;
+}
+h3 {
+    @apply text-2xl font-semibold mb-3;
+}
+
+/* 🔗 Links */
+a {
+    @apply transition-colors duration-200 cursor-pointer;
+}
+a:hover {
+    @apply text-blue-400;
+}
+
+/* 🌐 Navbar */
+.navbar {
+    @apply p-4 bg-black/70 backdrop-blur-md text-white flex gap-6 justify-center items-center shadow-md sticky top-0 z-50;
+}
+.navbar a {
+    @apply font-medium hover:text-blue-400 transition-colors duration-300;
+}
+.navbar .socials {
+    @apply flex gap-4 ml-6;
+}
+
+/* 📑 Section Spacing */
+.section {
+    @apply py-20 container;
+}
+
+/* 🃏 Cards (Projects, Skills, etc.) */
+.card {
+    @apply p-6 bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1;
+}
+
+/* 🎛 Buttons */
+.btn {
+    @apply inline-block px-6 py-3 rounded-xl shadow text-white font-semibold transition;
+}
+.btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700;
+}
+.btn-secondary {
+    @apply bg-green-600 hover:bg-green-700;
+}
+
+/* 🖱 Mouse glow */
+.mouse-glow {
+    @apply pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-30 bg-white w-40 h-40 -z-10;
+}
+
+/* 🌈 Animated background */
+.animated-bg {
+    @apply absolute inset-0 -z-20 bg-gradient-to-br from-purple-500 via-blue-500 to-pink-500;
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+}
+
+/* 🌈 Keyframes */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 👣 Footer */
+.footer {
+    @apply p-4 bg-black/60 text-center text-sm text-white backdrop-blur-md;
+}
