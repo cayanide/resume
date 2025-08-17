@@ -260,12 +260,12 @@ export default function Home() {
             {
               title: "Sentiment Analysis",
               desc: "NLP pipeline analyzing user feedback using Python, TensorFlow, and Flask API deployment.",
-              link: "https://github.com/cayanide/sentiment-analysis",
+              link: "https://github.com/cayanide/Data-Extraction-and-NLP",
             },
             {
               title: "BetterQuery",
               desc: "AI-powered query assistant using Flask, Elasticsearch, and GPT-4 to optimize search.",
-              link: "https://github.com/cayanide/ElasticLLMIntegration",
+              link: "https://github.com/cayanide/Elastic_LLM_Intregation",
             },
             {
               title: "AdSense Data Fetcher",

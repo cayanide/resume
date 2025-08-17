@@ -15,7 +15,7 @@ const projects = [
       "AI assistant that crafts semantic search queries with feedback-driven refinements.",
     details:
       "Engineered a Flask API integrating Elasticsearch and GPT-4 to dynamically generate precise queries. Features automated index selection, sanitization, error handling, and logging for reliability.",
-    link: "https://github.com/cayanide/ElasticLLMIntegration",
+    link: "https://github.com/cayanide/Elastic_LLM_Intregation",
     featured: true,
   },
   {
