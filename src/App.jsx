@@ -1,7 +1,13 @@
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -14,10 +20,11 @@ export default function App() {
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [navOffset, setNavOffset] = useState(0);
   const [navShadow, setNavShadow] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
-
-  const NAV_HEIGHT = 64; // px, adjust as needed
+  const NAV_HEIGHT = 64; // px
 
   // Track mouse for glow effect
   useEffect(() => {
@@ -33,16 +40,12 @@ export default function App() {
       if (!ticking.current) {
         window.requestAnimationFrame(() => {
           const delta = currentY - lastScrollY.current;
-          // Hide navbar on scroll down, show on scroll up
           if (delta > 0 && currentY > 100) {
             setNavOffset(-NAV_HEIGHT);
           } else if (delta < 0) {
             setNavOffset(0);
           }
-
-          // Add shadow/backdrop when scrolling down a bit
           setNavShadow(currentY > 50);
-
           lastScrollY.current = currentY;
           ticking.current = false;
         });
@@ -52,6 +55,29 @@ export default function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu on route change click
+  const closeMobile = () => setMobileOpen(false);
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/projects" },
+    { name: "Resume", path: "/resume" },
+    { name: "Certifications", path: "/certifications" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  // Animations
+  const mobilePanel = {
+    hidden: { opacity: 0, y: -10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.25, ease: "easeOut" },
+    },
+    exit: { opacity: 0, y: -10, transition: { duration: 0.2, ease: "easeIn" } },
+  };
 
   return (
     <Router>
@@ -72,63 +98,143 @@ export default function App() {
 
         {/* Navbar */}
         <motion.nav
-          className={`navbar fixed top-0 left-0 w-full z-50 bg-gray-900/70 backdrop-blur-md transition-shadow duration-300 ${
+          className={`fixed top-0 left-0 w-full z-50 bg-gray-900/70 backdrop-blur-md transition-shadow duration-300 ${
             navShadow ? "shadow-lg" : "shadow-none"
           }`}
           style={{ translateY: navOffset }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-            {/* Nav links */}
-            <div className="flex gap-6 md:gap-8 text-lg font-medium">
-              {[
-                { name: "Home", path: "/" },
-                { name: "About", path: "/about" },
-                { name: "Projects", path: "/projects" },
-                { name: "Resume", path: "/resume" },
-                { name: "Certifications", path: "/certifications" },
-                { name: "Contact", path: "/contact" },
-              ].map((link, i) => (
+          <div className="container mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between">
+            {/* Brand (you can replace with a logo/text) */}
+            <Link
+              to="/"
+              className="text-lg sm:text-xl font-semibold tracking-wide hover:text-blue-300 transition-colors"
+              onClick={closeMobile}
+            >
+              Sayan Chatterjee
+            </Link>
+
+            {/* Desktop nav links */}
+            <div className="hidden md:flex gap-5 lg:gap-8 text-sm lg:text-base font-medium">
+              {navLinks.map((link, i) => (
                 <motion.div
                   key={i}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.96 }}
                 >
-                  <Link to={link.path}>{link.name}</Link>
+                  <Link
+                    to={link.path}
+                    className="hover:text-blue-300 transition-colors"
+                  >
+                    {link.name}
+                  </Link>
                 </motion.div>
               ))}
             </div>
 
-            {/* Social icons */}
-            <div className="flex gap-4 items-center">
+            {/* Right-side actions */}
+            <div className="hidden md:flex items-center gap-4">
               <a
                 href="https://github.com/cayanide"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:scale-125 transition-transform"
+                className="hover:scale-110 transition-transform"
+                aria-label="GitHub"
               >
-                <FaGithub size={22} />
+                <FaGithub size={20} />
               </a>
               <a
                 href="https://www.linkedin.com/in/sayan-chatterjee-a43613176/"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:scale-125 transition-transform"
+                className="hover:scale-110 transition-transform"
+                aria-label="LinkedIn"
               >
-                <FaLinkedin size={22} />
+                <FaLinkedin size={20} />
               </a>
               <a
                 href="mailto:sayanc354@gmail.com"
-                className="hover:scale-125 transition-transform"
+                className="hover:scale-110 transition-transform"
+                aria-label="Email"
               >
-                <FaEnvelope size={22} />
+                <FaEnvelope size={20} />
               </a>
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden inline-flex items-center justify-center rounded-md p-2 border border-white/10 bg-white/5 hover:bg-white/10 transition"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle navigation"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+            </button>
           </div>
+
+          {/* Mobile slide-down panel */}
+          <AnimatePresence>
+            {mobileOpen && (
+              <motion.div
+                variants={mobilePanel}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="md:hidden border-t border-white/10 bg-gray-900/80 backdrop-blur-md"
+              >
+                <div className="px-4 sm:px-6 py-3 flex flex-col gap-3">
+                  {/* Links */}
+                  <div className="flex flex-col">
+                    {navLinks.map((l, idx) => (
+                      <Link
+                        key={idx}
+                        to={l.path}
+                        onClick={closeMobile}
+                        className="py-2 px-2 rounded-md hover:bg-white/10 transition-colors"
+                      >
+                        {l.name}
+                      </Link>
+                    ))}
+                  </div>
+                  {/* Social row */}
+                  <div className="flex items-center gap-4 pt-2 border-t border-white/10">
+                    <a
+                      href="https://github.com/cayanide"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-blue-300 transition-colors"
+                    >
+                      <div className="inline-flex items-center gap-2">
+                        <FaGithub /> <span className="text-sm">GitHub</span>
+                      </div>
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/sayan-chatterjee-a43613176/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-blue-300 transition-colors"
+                    >
+                      <div className="inline-flex items-center gap-2">
+                        <FaLinkedin /> <span className="text-sm">LinkedIn</span>
+                      </div>
+                    </a>
+                    <a
+                      href="mailto:sayanc354@gmail.com"
+                      className="hover:text-blue-300 transition-colors"
+                    >
+                      <div className="inline-flex items-center gap-2">
+                        <FaEnvelope /> <span className="text-sm">Email</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.nav>
 
-        {/* Main content with padding equal to navbar height */}
-        <main className="flex-1 pt-2">
+        {/* Main content with padding (extra top space so content isn't under navbar) */}
+        <main className="flex-1 pt-20 md:pt-24">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -141,7 +247,7 @@ export default function App() {
         </main>
 
         {/* Footer */}
-        <footer className="footer mt-16 text-center text-gray-400">
+        <footer className="mt-16 text-center text-gray-400 px-4 pb-6">
           <p>
             © {new Date().getFullYear()}{" "}
             <span className="text-white font-semibold">
